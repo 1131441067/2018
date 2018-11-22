@@ -1,0 +1,93 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> create database taobao charset=utf8;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| taobao             |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use taobao;
+Database changed
+
+mysql> create table  gouwuche(                                                      -> id int primary key not null auto_increment,
+    -> favourite varchar(8),
+    -> tixing varchar(4),
+    -> 12yuanwang varchar(20));                                                Query OK, 0 rows affected (1.00 sec)
+
+mysql> select * from gouwuche;
+Empty set (0.01 sec)
+
+mysql> insert into gouwuche(id,favourite,tixing,12yuanwang) values(1,"nike","y","falali");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into gouwuche(id,favourite,tixing,12yuanwang) values("HM","y","benchi");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into gouwuche(id,favourite,tixing,12yuanwang) values(1,"HM","y","benchi");
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+mysql> insert into gouwuche(id,favourite,tixing,12yuanwang) values("HM","y","benchi");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into gouwuche(id,favourite,tixing,12yuanwang) values(2,"HM","y","benchi");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into gouwuche(id,favourite,tixing,12yuanwang) values(3,"yuuha","n","qq");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into gouwuche(id,favourite,tixing,12yuanwang) values(4,"huawei","n","aodi");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from gouwuche;
++----+-----------+--------+------------+
+| id | favourite | tixing | 12yuanwang |
++----+-----------+--------+------------+
+|  1 | nike      | y      | falali     |
+|  2 | HM        | y      | benchi     |
+|  3 | yuuha     | n      | qq         |
+|  4 | huawei    | n      | aodi       |
++----+-----------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update gouwuche set 12yuanwang="mianfu" where 12yuanwang="qq";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from gouwuche;
++----+-----------+--------+------------+
+| id | favourite | tixing | 12yuanwang |
++----+-----------+--------+------------+
+|  1 | nike      | y      | falali     |
+|  2 | HM        | y      | benchi     |
+|  3 | yuuha     | n      | mianfu     |
+|  4 | huawei    | n      | aodi       |
++----+-----------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from gouwuche where id=4;
+Query OK, 1 row affected (0.35 sec)
+
+mysql> select * from gouwuche;
++----+-----------+--------+------------+
+| id | favourite | tixing | 12yuanwang |
++----+-----------+--------+------------+
+|  1 | nike      | y      | falali     |
+|  2 | HM        | y      | benchi     |
+|  3 | yuuha     | n      | mianfu     |
++----+-----------+--------+------------+
+3 rows in set (0.00 sec)
